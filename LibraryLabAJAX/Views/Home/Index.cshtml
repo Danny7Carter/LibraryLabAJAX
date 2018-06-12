@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+Author:
+<input type="text" id="author" class="form-control"
+       oninput="search()" />
+<!-- input type="button" id="search" value="Search by City"
+        class="btn btn-default" onclick="search()" /-->
+<table class="table table-striped" id="books">
+    <!-- this is the inner HTML for #customers -->
+</table>
+<script type="text/javascript"
+        src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function search() {
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Home/GetBooksByAuthor',
+                data: '{Author: "' + document.getElementById("author").value
+                + '"}',
+                contentType: 'application/json; charset-utf-8',
+                dataType: 'json',
+                success:
+                function (response) {
+                    var tableHTML = "<tr><th>Title</th>"
+                        + "<th>Author</th>"
+                        + "<th>Year</th>"
+                        + "<th>Genre</th></tr>";
+                        for (var i = 0; i < response.length; i++) {
+                            var book = response[i];
+                            var tr = "<tr><td>" + book.Title + "</td>"
+                                + "<td>" + book.Author + "</td>"
+                                + "<td>" + book.YearPublished + "</td>"
+                                + "<td>" + book.Genre + "</td>"
+                                + "</tr>";
+                            tableHTML += tr;
+                        }
+                        document.getElementById("books")
+                            .innerHTML = tableHTML;
+                    },
+                failure: function (response) {
+                    alert("Failure" + response.responseText);
+                },
+                error: function (response) {
+                    alert("Error" + response.responseText);
+                }
+            }
+
+        );
+    }
+</script>
