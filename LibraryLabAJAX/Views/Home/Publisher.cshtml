@@ -17,7 +17,7 @@ Publisher:
         $.ajax(
             {
                 type: 'POST',
-                url: '/Home/GetBooksByPublisher',
+                url: '/Home/Publisher',
                 data: '{Publisher: "' + document.getElementById("publisher").value
                 + '"}',
                 contentType: 'application/json; charset-utf-8',

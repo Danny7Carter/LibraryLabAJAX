@@ -203,6 +203,7 @@
     <Content Include="Models\Library.edmx.diagram">
       <DependentUpon>Library.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Start\.gitignore" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -228,7 +229,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\BooksByPublisher.cshtml" />
+    <Content Include="Views\Home\Publisher.cshtml" />
+    <Content Include="Views\Home\SearchAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

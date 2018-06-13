@@ -27,6 +27,17 @@ namespace LibraryLabAJAX.Controllers
 
             return View();
         }
+        public ActionResult Publisher()
+        {
+            return View();
+        }
+        public ActionResult SearchAll()
+        {
+            return View();
+        }
+
+
+
 
         [HttpPost]
         public ActionResult GetBooksByAuthor(string author)
@@ -64,10 +75,7 @@ namespace LibraryLabAJAX.Controllers
             return Json(list);
         }
 
-        public ActionResult BooksByPublisher()
-        {          
-            return View();
-        }
+       
         [HttpPost]
         public ActionResult GetBooksByPublisher(string publisher)
         {
@@ -78,6 +86,27 @@ namespace LibraryLabAJAX.Controllers
                               ).ToList();
 
             return Json(list);
+        }
+        public ActionResult GetBooksByAny(string author, string title, int? year, string publisher)
+        {
+            LibraryEntities db = new LibraryEntities();
+
+            List<book> all = db.books.Where(
+                              t => t.Publisher.Contains(publisher)
+                              ).ToList();
+                               db.books.Where(
+                              //has to equal the year the user puts in.
+                              y => y.YearPublished == (year)
+                              ).ToList();
+                              db.books.Where(
+                              t => t.Title.Contains(title)
+                              ).ToList();
+                                db.books.Where(
+                                a => a.Author.Contains(author)
+                                ).ToList();
+
+
+            return Json(all);
         }
     }
 }
